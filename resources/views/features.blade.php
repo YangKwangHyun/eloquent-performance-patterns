@@ -12,7 +12,7 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
         <span class="shadow-sm rounded-md">
-          <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out">
+          <button type="button" id="testBtn" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out">
             New feature
           </button>
         </span>
@@ -95,7 +95,7 @@
                                     {{ $feature->comments_count }} {{ Str::plural('comment', $feature->comments_count) }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">Edit</a>
+                                    <a href="/features/{{ $feature->id }}" class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">View</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -108,3 +108,17 @@
     </main>
 
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('testBtn').addEventListener('click', function () {
+            var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+
+            if (isChrome) {
+                alert('맞아! 크롬 브라우저야!');
+            } else {
+                alert('크롬 브라우저에서만 팝업이 지원됩니다.');
+            }
+        });
+    </script>
+@endpush
