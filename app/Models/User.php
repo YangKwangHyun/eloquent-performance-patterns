@@ -99,20 +99,21 @@ class User extends Authenticatable
         ) use (
             $query
         ) {
-            $term = $term.'%';
+            // term을 정규식으로 검사하여 알파벳과 숫자만 남기고, 나머지는 제거
+            $term = preg_replace('/[^a-zA-Z0-9]/', '', $term).'%';
             $query->whereIn('id', function ($query) use ($term) {
                 $query->select('id')
                     ->from(function ($query) use ($term) {
                         $query->select('id')
                             ->from('users')
-                            ->where('first_name', 'like', $term)
-                            ->orWhere('last_name', 'like', $term)
+                            ->where('first_name_normalized', 'like', $term)
+                            ->orWhere('last_name_normalized', 'like', $term)
                             ->union(
                                 $query->newQuery()
                                     ->select('users.id')
                                     ->from('users')
                                     ->join('companies', 'companies.id', '=', 'users.company_id')
-                                    ->where('companies.name', 'like', $term)
+                                    ->where('companies.name_normalized', 'like', $term)
                             );
                     }, 'matches');
             });
