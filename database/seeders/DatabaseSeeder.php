@@ -21,12 +21,14 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        User::factory()->create(['name' => 'Ted Bossman', 'is_owner' => true]);
-        User::factory()->create(['name' => 'Sarah Seller']);
-        User::factory()->create(['name' => 'Chase Indeals']);
+        // User::factory()->create(['name' => 'Ted Bossman', 'is_owner' => true]);
+        // User::factory()->create(['name' => 'Sarah Seller']);
+        // User::factory()->create(['name' => 'Chase Indeals']);
+        //
+        // User::all()->each(fn ($user) => $user->customer()
+        //     ->createMany(Customer::factory(15)->make()->toArray())
+        // );
 
-        User::all()->each(fn ($user) => $user->customer()
-            ->createMany(Customer::factory(15)->make()->toArray())
-        );
+        User::factory(100000)->create();
     }
 }
