@@ -120,4 +120,9 @@ class User extends Authenticatable
         });
 
     }
+
+    public function customer()
+    {
+        return $this->hasMany(Customer::class, 'sales_rep_id');
+    }
 }
