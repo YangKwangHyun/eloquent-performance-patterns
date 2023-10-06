@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('name_normalized')->virtualAs("regexp_replace(name, '[^a-zA-Z0-9]+', '')")->index();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('name')->index();
             $table->timestamps();
         });
     }
