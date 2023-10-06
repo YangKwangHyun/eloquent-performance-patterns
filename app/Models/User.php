@@ -15,86 +15,32 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
-    protected $fillable
-        = [
-            'name',
-            'email',
-            'password',
-        ];
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
-     * @var array<int, string>
+     * @var array
      */
-    protected $hidden
-        = [
-            'password',
-            'remember_token',
-        ];
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
-     * @var array<string, string>
+     * @var array
      */
-    protected $casts
-        = [
-            'email_verified_at' => 'datetime',
-            'password'          => 'hashed',
-        ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
     public function company()
     {
-        return $this->hasOne(Company::class);
-    }
-
-    public function logins()
-    {
-        return $this->hasMany(Login::class);
-    }
-
-    // public function scopeWithLastLoginAt($query)
-    // {
-    //     $query->addSelect([
-    //         'last_login_at' => Login::select('created_at')
-    //             ->whereColumn('user_id', 'users.id')
-    //             ->latest()
-    //             ->take(1)
-    //     ])
-    //         ->withCasts(['last_login_at' => 'datetime']);
-    // }
-    //
-    // public function scopeWithLastLoginIpAddress($query)
-    // {
-    //     $query->addSelect([
-    //         'last_login_ip_address' => Login::select('ip_address')
-    //             ->whereColumn('user_id', 'users.id')
-    //             ->latest()
-    //             ->take(1)
-    //     ]);
-    // }
-
-    public function lastLogin()
-    {
-        // last_login_id
-        return $this->belongsTo(Login::class);
-    }
-
-    public function scopeWithLastLogin($query)
-    {
-        $query->addSelect([
-            'last_login_id' => Login::select('id')
-                ->whereColumn('user_id', 'users.id')
-                ->latest()
-                ->take(1)
-        ])->with('lastLogin');
-    }
-
-    public function customer()
-    {
-        return $this->hasMany(Customer::class, 'sales_rep_id');
+        return $this->belongsTo(Company::class);
     }
 }

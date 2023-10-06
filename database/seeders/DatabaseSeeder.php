@@ -15,25 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        // User::factory()->create(['name' => 'Ted Bossman', 'is_owner' => true]);
-        // User::factory()->create(['name' => 'Sarah Seller']);
-        // User::factory()->create(['name' => 'Chase Indeals']);
-        //
-        // User::all()->each(fn ($user) => $user->customer()
-        //     ->createMany(Customer::factory(15)->make()->toArray())
-        // );
-
-        // User::factory(100000)->create();
-
-        User::factory(50000)->create()->each(fn ($user) =>
-          Company::factory()->create(['user_id' => $user->id])
+        Company::factory(10000)->create()->each(fn ($company) => $company->users()
+            ->createMany(User::factory(5)->make()->map->getAttributes())
         );
     }
 }
