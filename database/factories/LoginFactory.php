@@ -14,9 +14,9 @@ class LoginFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
             'ip_address' => $this->faker->ipv4,
-            'created_at' => $this->faker->dateTimeThisDecade('now'),
+            // create_at은 현시점부터 한달 랜덤
+            'created_at' => Carbon::now()->subDays(rand(0, 30))->format('Y-m-d H:i:s'),
         ];
     }
 }
