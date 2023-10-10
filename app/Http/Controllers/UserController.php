@@ -11,8 +11,13 @@ class UserController extends Controller
     public function index()
     {
         $users = User::query()
-            ->orderByLastLogin()
-            ->withLastLogin()
+            ->when(request('sort') === 'town', function ($query) {
+                $direction = strtolower(request('direction')) === 'asc' ? 'asc' : 'desc';
+
+                $query
+                    ->orderByNullsLast('town', $direction);
+            })
+            ->orderBy('name')
             ->paginate();
 
         return view('users', ['users' => $users]);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="bg-gray-200 antialiased font-sans">
 <head>
-    <title>Clients</title>
+    <title>Library</title>
     <link rel="stylesheet" href="/css/tailwind-ui.min.css">
 </head>
 <body>
@@ -11,13 +11,13 @@
             <div class="flex items-center">
                 <div class="flex-shrink-0 flex items-center">
                     <svg class="w-auto h-6 text-green-400 fill-current" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM6.7 9.29L9 11.6l4.3-4.3 1.4 1.42L9 14.4l-3.7-3.7 1.4-1.42z"/></svg>
-                    <span class="ml-2 text-white font-bold text-xl">Clients</span>
+                    <span class="ml-2 text-white font-bold text-xl">Library</span>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline">
-                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Users</a>
-                        <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Companies</a>
-                        <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Settings</a>
+                        <a href="/" class="{{ request()->is('/') ? 'px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700' : 'px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700' }}">Books</a>
+                        <a href="/users" class="ml-4 {{ request()->is('users*') ? 'px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700' : 'px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700' }}">Users</a>
+                        <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Categories</a>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,5 @@
     </div>
 </nav>
 @yield('content')
-
-@stack('scripts')
 </body>
 </html>
