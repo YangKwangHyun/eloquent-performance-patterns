@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\UserController::class, 'index']);
+// Route::get('/', [\App\Http\Controllers\UserController::class, 'index']);
 
 // Route::get('/', [\App\Http\Controllers\PostController::class, 'index']);
 
@@ -22,3 +22,5 @@ Route::get('/', [\App\Http\Controllers\UserController::class, 'index']);
 // Route::get('/features/{feature}', [FeaturesController::class, 'show']);
 
 // Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index']);
+
+Route::get('/', [\App\Http\Controllers\BooksController::class, 'index']);
