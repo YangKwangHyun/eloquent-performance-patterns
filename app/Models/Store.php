@@ -33,4 +33,15 @@ class Store extends Model
                ST_SRID(Point(?,?), 4326)
                ) <= ?', [...$coordinates, $distance]);
     }
+
+    public function scopeOrderByDistanceTo($query, array $coorinates, string $direction = 'asc')
+    {
+        $direction = strtolower($direction) === 'asc' ? 'asc' : 'desc';
+
+        $query->orderByRaw('
+               ST_Distance(
+               location,
+               ST_SRID(Point(?,?), 4326)
+               ) '.$direction, $coorinates);
+    }
 }
