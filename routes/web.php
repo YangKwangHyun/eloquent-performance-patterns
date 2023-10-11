@@ -22,5 +22,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', [FeaturesController::class, 'index'])->name('features');
 // Route::get('/features/{feature}', [FeaturesController::class, 'show']);
 
-Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index']);
+// Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index']);
 
+Route::get('/', [\App\Http\Controllers\DevicesController::class, 'index']);
