@@ -40,8 +40,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function customer()
+    public function posts()
     {
-        return $this->hasMany(Customer::class, 'sales_rep_id');
+        return $this->hasMany(Post::class, 'author_id');
     }
 }

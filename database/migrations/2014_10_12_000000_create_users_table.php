@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->rawIndex("(date_format(birth_date, '%m-%d')), name", 'users_birth_date_name_index');
         });
     }
 

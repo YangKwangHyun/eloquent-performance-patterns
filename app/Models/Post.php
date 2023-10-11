@@ -9,10 +9,9 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $casts
-        = [
-            'published_at' => 'datetime',
-        ];
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
 
     public function author()
     {

@@ -8,13 +8,17 @@ class PostController extends Controller
 {
     public function index()
     {
-        $years = Post::query()
-            ->select('id','title','slug','published_at','author_id')
-            ->with('author:id,name')
-            ->latest('published_at')
-            ->get()
-            ->groupBy(fn ($post) => $post->published_at->year);
+        $posts = Post::query()
+            ->with('author')
+            ->when(request('search'), function($query, $search) {
+                $query
+                    ->selectRaw('*, match(title, body) against (? in boolean mode) as score', [$search])
+                    ->whereRaw('match(title, body) against (? in boolean mode)', [$search]);
+            }, function ($query) {
+                $query->latest('published_at');
+            })
+            ->paginate();
 
-        return view('posts', ['years' => $years]);
+        return view('posts', ['posts' => $posts]);
     }
 }
