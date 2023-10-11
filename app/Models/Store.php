@@ -11,14 +11,26 @@ class Store extends Model
 
     public function scopeSelectDistanceTo($query, array $coordinates)
     {
-        if(is_null($query->getQuery()->columns)) {
+        if (is_null($query->getQuery()->columns)) {
             $query->select('*');
         }
 
         $query->selectRaw('
                ST_Distance(
-               ST_SRID(Point(longitude, latitude), 4326),
+               location,
                ST_SRID(Point(?,?), 4326)
                ) as distance', $coordinates);
+    }
+
+    public function scopeWithinDistanceTo(
+        $query,
+        array $coordinates,
+        int $distance
+    ) {
+        $query->whereRaw('
+               ST_Distance(
+               location,
+               ST_SRID(Point(?,?), 4326)
+               ) <= ?', [...$coordinates, $distance]);
     }
 }
