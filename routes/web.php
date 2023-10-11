@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\BooksController::class, 'index'])->name('books');
-Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users');
+// Route::get('/', [\App\Http\Controllers\BooksController::class, 'index'])->name('books');
+// Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users');
 
 // Route::get('/', [\App\Http\Controllers\PostController::class, 'index']);
 
-// Route::get('/', [FeaturesController::class, 'index']);
+Route::get('/', [FeaturesController::class, 'index'])->name('features');
 // Route::get('/features/{feature}', [FeaturesController::class, 'show']);
 
 // Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index']);

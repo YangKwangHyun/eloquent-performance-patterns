@@ -26,7 +26,7 @@ class FeatureFactory extends Factory
                 'Requested',
                 'Requested',
                 'Requested',
-                'Planned',
+                'Approved',
                 'Completed',
                 'Completed',
             ]),
