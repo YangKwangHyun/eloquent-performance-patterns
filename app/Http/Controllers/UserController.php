@@ -11,12 +11,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::query()
-            ->when(request('sort') === 'town', function ($query) {
-                $direction = strtolower(request('direction')) === 'asc' ? 'asc' : 'desc';
-
-                $query
-                    ->orderByNullsLast('town', $direction);
-            })
+            ->whereBirthdayThisWeek()
+            ->orderByBirthday()
             ->orderBy('name')
             ->paginate();
 

@@ -18,20 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::factory(250)->create();
-
-        Feature::factory(60)->create()->each(function ($feature) use ($users) {
-            $feature->comments()->createMany(
-                Comment::factory(rand(1, 50))->make()->each(function ($comment) use ($users) {
-                    $comment->user_id = $users->random()->id;
-                })->toArray()
-            );
-
-            $feature->votes()->createMany(
-                Vote::factory(rand(0, 250))->make()->each(function ($vote) use ($users) {
-                    $vote->user_id = $users->random()->id;
-                })->toArray()
-            );
-        });
+        User::factory(50000)->create();
     }
 }
