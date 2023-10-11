@@ -50,14 +50,7 @@
                                     {{ $customer->city }}, {{ $customer->state }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                    <div class="flex items-center">
-                                        <div>{{ $customer->salesRep->name }}</div>
-                                        @if ($customer->salesRep->is_owner)
-                                            <div class="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Owner
-                                            </div>
-                                        @endif
-                                    </div>
+                                    {{ $customer->salesRep->name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">Edit</a>

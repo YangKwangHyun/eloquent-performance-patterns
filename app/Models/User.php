@@ -37,23 +37,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'birth_date' => 'date',
         'email_verified_at' => 'datetime',
     ];
 
-    public function scopeOrderByBirthday($query)
+    public function customer()
     {
-        $query->orderByRaw('date_format(birth_date, "%m-%d")');
-    }
-
-    public function scopeWhereBirthdayThisWeek($query)
-    {
-        Carbon::setTestNow(Carbon::parse('January 1, 2020'));
-
-        $dates = Carbon::now()->startOfWeek()
-            ->daysUntil(Carbon::now()->endOfWeek())
-            ->map(fn ($date) => $date->format('m-d'));
-
-        $query->whereRaw('date_format(birth_date, "%m-%d") in (?,?,?,?,?,?,?)', iterator_to_array($dates));
+        return $this->hasMany(Customer::class, 'sales_rep_id');
     }
 }
